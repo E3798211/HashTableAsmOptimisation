@@ -1,6 +1,8 @@
 #include <iostream>
-#include "HashTable.h"
-#include "WordStruct.h"
+// #include "HashTable.h"
+// #include "WordStruct.h"
+
+#include "HashLab.h"
 
 int main()
 {
@@ -37,5 +39,4 @@ int main()
     List<Word> a("qwe");
     HashTable<Word, 10> c;
 */
-
 }
