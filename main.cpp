@@ -2,14 +2,9 @@
 #include "HashTable.h"
 #include "WordStruct.h"
 
-int Compare(const int* first, const int* second)
-{
-    if(*first == *second)   return 0;
-    return 1;
-}
-
 int main()
 {
+/*
     Word w1("a");
     Word w2("b");
     Word w3("c");
@@ -23,6 +18,7 @@ int main()
     std::cout << "c = " << &c << "\n";
 
     std::cout << c.Find(w3);
-
-    // HashTable<Word, 10> c;
+*/
+    List<Word> a("qwe");
+    HashTable<Word, 10> c;
 }

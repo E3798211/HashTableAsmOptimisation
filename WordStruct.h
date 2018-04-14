@@ -11,6 +11,9 @@ struct Word
     /// Times met
     size_t times_met_ = 0;
 
+    /// Default constructor
+    Word() {};
+
     /// Constructor with parameters
     Word(const char* word):
         word_   (word)

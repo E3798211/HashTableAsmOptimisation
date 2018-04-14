@@ -9,7 +9,7 @@ class HashTable
 private:
 
     /// Table
-    List<data_T> table_[max_hash_table_size] = {};
+    List<data_T>* table_[max_hash_table_size] = {};
 
     /// Buffer list. Used in cases of fault
     List<data_T> tmp_;
@@ -36,12 +36,13 @@ public:
     }
 
     /// Subscript operator
-    List<data_T>& operator[](size_t index)
+    List<data_T>*& operator[](size_t index)
     {
         if(index >= max_hash_table_size)
         {
             std::cout << "Invalid index size: " << index << "\n";
-            return tmp_;
+            List<data_T>* tmp= &tmp_;                                               //  <-- Do I have to do it?
+            return tmp;
         }
 
         return table_[index];
