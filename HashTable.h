@@ -17,7 +17,7 @@ private:
 public:
 
     /// Default constructor
-    HashTable()
+    HashTable()     noexcept
     {
         std::cout << "HashTable default constructor\n";
     }
@@ -30,13 +30,13 @@ public:
 
     /// Assignment operator
     HashTable<data_T, max_hash_table_size>&
-    operator=(const HashTable<data_T, max_hash_table_size>& that)   const
+    operator=(const HashTable<data_T, max_hash_table_size>& that)   const   noexcept
     {
         return *this;
     }
 
     /// Subscript operator
-    List<data_T>*& operator[](size_t index)
+    List<data_T>*& operator[](size_t index)     noexcept
     {
         if(index >= max_hash_table_size)
         {

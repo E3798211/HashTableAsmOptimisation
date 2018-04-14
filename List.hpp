@@ -2,7 +2,7 @@
 #define LIST_HPP_INCLUDED
 
 template<typename data_T>
-List<data_T>* List<data_T>::Find(const data_T& to_be_found)
+List<data_T>* List<data_T>::Find(const data_T& to_be_found) const   noexcept
 {
     List<data_T>* current = this;
     while(current)

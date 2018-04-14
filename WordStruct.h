@@ -15,14 +15,14 @@ struct Word
     Word() {};
 
     /// Constructor with parameters
-    Word(const char* word):
+    Word(const char* word)  noexcept:
         word_   (word)
     {
         std::cout << "Word constructor with parameters\n";
     }
 
     /// Compare operator
-    bool operator==(const Word& that)
+    bool operator==(const Word& that)   noexcept
     {
         if(that.word_ == this->word_)   return true;
         return false;
