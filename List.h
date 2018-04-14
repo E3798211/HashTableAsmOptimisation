@@ -28,7 +28,7 @@ public:
         next_elem_  (next),
         data_       (new_data)
     {
-        std::cout << "List constructor with parameters (2)\n";
+        std::cout << "List constructor with parameters\n";
     }
 
     /// Copy constructor deleted
@@ -60,14 +60,11 @@ public:
 
     /// Find element in the list
     /**
-        Comparator demands:
-        1. returns  0 when operands are equal
-        2. returns !0 when operands are different
+        \warning data_T needs operator== defined
 
         Returns pointer to the first element that contains wanted data or nullptr if data was not found.
     */
-    List<data_T>* Find( const data_T& to_be_found,
-                        int (*compare)(const data_T* first, const data_T* second));
+    List<data_T>* Find(const data_T& to_be_found);
 };
 
 #include "List.hpp"
