@@ -1,7 +1,4 @@
 #include <iostream>
-// #include "HashTable.h"
-// #include "WordStruct.h"
-
 #include "HashLab.h"
 
 int main()
