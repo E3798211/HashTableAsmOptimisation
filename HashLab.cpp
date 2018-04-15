@@ -209,11 +209,37 @@ size_t Hash4(const Word& seed)  noexcept
 
 size_t Hash5(const Word& seed)  noexcept
 {
-    //
+    size_t hash = 0;
+
+    const char* str = seed.word_.c_str();
+    while(*str != '\0'){
+        if(hash % 2 == 0)
+            hash = hash >> 1;
+        else{
+            hash = hash >> 1;
+            hash += 2147483648; // 2^31
+        }
+
+        hash = hash ^ (*str++);
+    }
+    return hash;
 }
 
 size_t Hash6(const Word& seed)   noexcept
 {
-    //
+    size_t hash = 5381;
+    const char* str = seed.word_.c_str();
+    int c = str[0];
+
+    if(seed.word_.length() > 1)
+    {
+        while (c != '\0'){
+            c = *str;
+            hash = ((hash << 5) + hash) + c; /* hash * 33 + c */
+            str++;
+        }
+    }
+
+    return hash;
 }
 

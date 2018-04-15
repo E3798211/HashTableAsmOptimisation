@@ -9,7 +9,7 @@ int main()
     char* line = FileRead("prepared");
     size_t n_words = CountWords(line);
 
-    HashTable<Word, 10> htable;
+    HashTable<Word, MAX_HASH_TABLE_SIZE> htable;
 
     Word* words = nullptr;
     hash_func_t hash_functions[6] = { Hash1, Hash2, Hash3, Hash4, Hash5, Hash6 };
