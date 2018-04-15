@@ -25,6 +25,12 @@ char* PrepareFile(const char* filename) noexcept;
 */
 char* FileRead(const char* filename)    noexcept;
 
+/// Counts words in the file
+size_t CountWords(char* file_content)   noexcept;
+
+/// Creates array with words
+Word* Parse(char* file_content, size_t n_words) noexcept;
+
 // Hash functions   ================================================================
 
 /// const 1 hash

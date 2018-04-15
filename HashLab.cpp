@@ -53,7 +53,7 @@ char* FileRead(const char* filename)    noexcept
         return nullptr;
     }
 
-    size_t filesize = ftell(input);
+    int filesize = ftell(input);
     if(filesize == EOF)
     {
         std::cout << "Couldn't get pointer's position in " << filename << "\n";
@@ -77,6 +77,62 @@ char* FileRead(const char* filename)    noexcept
     fclose(input);
     return poem_in_line;
 }
+
+size_t CountWords(char* file_content)   noexcept
+{
+    if(!file_content)
+    {
+        std::cout << "Unexpected nullptr as file content\n";
+        return -1;
+    }
+
+    size_t n_words = 0;
+    while(*file_content != '\0')
+    {
+        if(isspace(*file_content) || *file_content == '\0')
+        {
+            *file_content = '\0';
+            n_words++;
+        }
+        file_content++;
+    }
+
+    return n_words;
+}
+
+Word* Parse(char* file_content, size_t n_words) noexcept
+{
+    if(!file_content)
+    {
+        std::cout << "Unexpected nullptr as file content\n";
+        return nullptr;
+    }
+
+    Word* words = nullptr;
+    try
+    {
+        words = new Word [n_words];
+    }
+    catch(const std::bad_alloc& ex)
+    {
+        std::cout << "Failed to allocate memory for " << n_words << " words\n";
+        return nullptr;
+    }
+
+    for(size_t i = 0; i < n_words; i++)
+    {
+        words[i].word_ = file_content;
+
+        while(*file_content != '\0')
+            file_content++;
+        file_content++;
+    }
+
+    return words;
+}
+
+
+
 
 
 
