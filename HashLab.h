@@ -17,9 +17,9 @@ const char PREPARED_DEFAULT_FILENAME[] = "prepared";
 
 /// Creates "clean" file to be read
 /**
-    Returns nullptr in case of fault
+    Returns -1 in case of fault, 0 if all is OK
 */
-char* PrepareFile(const char* filename) noexcept;
+int PrepareFile(const char* filename)   noexcept;
 
 /// Reads prepared file
 /**

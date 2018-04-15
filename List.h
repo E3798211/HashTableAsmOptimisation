@@ -46,6 +46,12 @@ public:
         return *this;
     }
 
+    /// Destructor
+    ~List()
+    {
+        delete next_elem_;
+        std::cout << "deleting list = " << this << "\n";
+    }
 
     // Service  ====================================================
 

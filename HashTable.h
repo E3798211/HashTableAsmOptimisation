@@ -48,6 +48,17 @@ public:
         return table_[index];
     }
 
+    /// Destructor
+    ~HashTable()
+    {
+        for(size_t i = 0; i < max_hash_table_size; i++)
+        {
+            delete table_[i];
+        }
+    }
+
+    // Service  ====================================================
+
     /// Adds word to the list
     List<data_T>* Add(size_t index, const data_T& data);
 
@@ -62,6 +73,18 @@ public:
 
         if(table_[index] == nullptr)    return 0;
         return table_[index]->GetLength();
+    }
+
+    /// Resets hashtable
+    HashTable<data_T, max_hash_table_size>& Reset()
+    {
+        for(size_t i = 0; i < max_hash_table_size; i++)
+        {
+            delete table_[i];
+            table_[i] = nullptr;
+        }
+
+        return *this;
     }
 };
 

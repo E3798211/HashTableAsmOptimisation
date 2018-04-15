@@ -1,12 +1,12 @@
 #include "HashLab.h"
 
-char* PrepareFile(const char* filename) noexcept
+int PrepareFile(const char* filename)   noexcept
 {
     char* buffer = FileRead(filename);
     if(!buffer)
     {
         std::cout << "FileRead() failed\n";
-        return nullptr;
+        return -1;
     }
 
     char* current_char = buffer;
@@ -23,13 +23,14 @@ char* PrepareFile(const char* filename) noexcept
     {
         std::cout << "Couldn't open " << PREPARED_DEFAULT_FILENAME << "\n";
         delete [] buffer;
-        return nullptr;
+        return -1;
     }
 
     fwrite(clean_string.c_str(), sizeof(char), clean_string.length(), output);
 
     fclose(output);
-    return buffer;
+    delete [] buffer;
+    return 0;
 }
 
 char* FileRead(const char* filename)    noexcept

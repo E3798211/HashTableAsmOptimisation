@@ -20,7 +20,7 @@ InitHashTable(  HashTable<Word, max_hash_table_size>& htable,
 
     size_t hash = 0;
     List<Word>* tmp = nullptr;
-    for(int i = 0; i < n_words; i++)
+    for(size_t i = 0; i < n_words; i++)
     {
         hash = hash_function(words[i]);
         hash = hash % max_hash_table_size;

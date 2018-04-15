@@ -27,6 +27,12 @@ struct Word
         if(that.word_ == this->word_)   return true;
         return false;
     }
+
+    /// Destructor
+    ~Word()
+    {
+        std::cout << "Word dead\n";
+    }
 };
 
 #endif // WORDSTRUCT_H_INCLUDED
