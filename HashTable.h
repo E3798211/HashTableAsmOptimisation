@@ -36,16 +36,32 @@ public:
     }
 
     /// Subscript operator
-    List<data_T>*& operator[](size_t index)     noexcept
+    List<data_T>* operator[](size_t index)     noexcept
     {
         if(index >= max_hash_table_size)
         {
             std::cout << "Invalid index size: " << index << "\n";
-            List<data_T>* tmp= &tmp_;                                               //  <-- Do I have to do it?
-            return tmp;
+            // List<data_T>* tmp = &tmp_;                                              //  <-- Do I have to do it?
+            return &tmp_;
         }
 
         return table_[index];
+    }
+
+    /// Adds word to the list
+    List<data_T>* Add(size_t index, const data_T& data);
+
+    /// Gets length of the list
+    size_t GetLength(size_t index)
+    {
+        if(index >= max_hash_table_size)
+        {
+            std::cout << "Invalid index size: " << index << "\n";
+            return -1;
+        }
+
+        if(table_[index] == nullptr)    return 0;
+        return table_[index]->GetLength();
     }
 };
 

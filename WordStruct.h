@@ -9,7 +9,7 @@ struct Word
     std::string  word_;
 
     /// Times met
-    size_t times_met_ = 0;
+    size_t times_met_ = 1;
 
     /// Default constructor
     Word() {};

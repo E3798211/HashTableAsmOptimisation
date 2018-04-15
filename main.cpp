@@ -3,37 +3,29 @@
 
 int main()
 {
-/*
-    Word w1("a");
-    Word w2("b");
-    Word w3("c");
-    Word w4("d");
-    List<Word> a(w1);
-    List<Word> b(w2);
-    List<Word> c(w3);
-    List<Word> d(w4);
+    PrepareFile("input");
+    char* line = FileRead("prepared");
+    size_t n_words = CountWords(line);
 
-    a += &b;
-    b += &c;
-    c += &d;
+    Word* words = Parse(line, n_words);
 
-    List<Word>* tmp = &d;
+    HashTable<Word, 10> htable;
 
-    while(tmp->GetNext())
+    InitHashTable(htable, words, n_words, Hash2);
+
+    for(int i = 0; i < 10; i++)
     {
-        std::cout << tmp << "\n";
-        tmp = tmp->GetNext();
-    }
-*/
-/*
-    std::cout << "a = " << &a << "\n";
-    std::cout << "b = " << &b << "\n";
-    std::cout << "c = " << &c << "\n";
+        std::cout << "len[" << i << "] = " << htable.GetLength(i) << "\n";
 
-    std::cout << c.Find(w3);
-*/
-/*
-    List<Word> a("qwe");
-    HashTable<Word, 10> c;
-*/
+        List<Word>* current = htable[i];
+        while(current)
+        {
+            std::cout << current->GetData().word_ << "\n";
+            current = current->GetNext();
+        }
+    }
 }
+
+
+
+

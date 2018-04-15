@@ -81,7 +81,7 @@ public:
 
         Returns pointer to the first element that contains wanted data or nullptr if data was not found.
     */
-    List<data_T>* Find(const data_T& to_be_found)   const   noexcept;
+    List<data_T>* Find(const data_T& to_be_found)   noexcept;
 
     /// Addition operator
     /**
@@ -100,6 +100,33 @@ public:
 
         new_elem->SetNext(this);
         return new_elem;
+    }
+
+    /// Actually, a copy of operator+=. Used with pointers
+    List<data_T>* Add(List<data_T>* new_elem)   noexcept
+    {
+        if(!new_elem)
+        {
+            std::cout << "Unexpected nullptr!\n";
+            return nullptr;
+        }
+
+        new_elem->SetNext(this);
+        return new_elem;
+    }
+
+    /// Find length of the list
+    size_t GetLength()
+    {
+        size_t length = 0;
+        List<data_T>* current = this;
+        while(current)
+        {
+            length++;
+            current = current->GetNext();
+        }
+
+        return length;
     }
 };
 
