@@ -3,8 +3,6 @@
 
 #include <cstring>
 
-typedef size_t (*hash_func_t)(const Word&);
-
 int main()
 {
     PrepareFile("input");
@@ -15,31 +13,23 @@ int main()
 
     Word* words = nullptr;
     hash_func_t hash_functions[6] = { Hash1, Hash2, Hash3, Hash4, Hash5, Hash6 };
+    FILE* output = PrepareTeX();
 
     for(auto func : hash_functions)
     {
         words = Parse(line, n_words);
         InitHashTable(htable, words, n_words, func);
+
+        LoadPoints(output, htable);
+
         htable.Reset();
         delete [] words;
     }
 
-/*
-    words = Parse(line, n_words);
-    InitHashTable(htable, words, n_words, Hash1);
-    htable.Reset();
-    delete [] words;
+    FinishTeX(output);
+    CallTeX();
+    // OpenFile();
 
-    words = Parse(line, n_words);
-    InitHashTable(htable, words, n_words, Hash2);
-    htable.Reset();
-    delete [] words;
-
-    words = Parse(line, n_words);
-    InitHashTable(htable, words, n_words, Hash3);
-    htable.Reset();
-    delete [] words;
-*/
     delete [] line;
 }
 

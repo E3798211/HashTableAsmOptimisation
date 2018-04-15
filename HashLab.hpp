@@ -5,7 +5,7 @@ template<size_t max_hash_table_size>
 HashTable<Word, max_hash_table_size>&
 InitHashTable(  HashTable<Word, max_hash_table_size>& htable,
                 Word* words, size_t n_words,
-                size_t (*hash_function)(const Word& seed))
+                size_t (*hash_function)(const Word& seed))  noexcept
 {
     if(!words)
     {
@@ -44,6 +44,23 @@ InitHashTable(  HashTable<Word, max_hash_table_size>& htable,
     }
 
     return htable;
+}
+
+template<size_t max_hash_table_size>
+int LoadPoints(FILE* output, HashTable<Word, max_hash_table_size>& htable)    noexcept
+{
+    if(!output)
+    {
+        std::cout << "Unexpected nullptr as words\n";
+        return -1;
+    }
+
+    fprintf(output, DIAGRAM_BEG);
+    for(size_t i = 0; i < max_hash_table_size; i++)
+        fprintf(output, "(%u, %u)\n", i, htable[i]->GetLength());
+    fprintf(output, DIAGRAM_END);
+
+    return 0;
 }
 
 #endif // HASHLAB_HPP_INCLUDED

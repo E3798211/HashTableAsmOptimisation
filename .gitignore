@@ -3,5 +3,9 @@ obj/
 *.cbp
 *.depend
 *.layout
+*.aux
+*.tex
+*.log
+*.pdf
 input
 prepared

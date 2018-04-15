@@ -132,6 +132,57 @@ Word* Parse(char* file_content, size_t n_words) noexcept
     return words;
 }
 
+
+FILE* PrepareTeX()  noexcept
+{
+    FILE* output = fopen(TEX_DEFAULT_FILENAME, "w");
+    if(!output)
+    {
+        std::cout << "Couldn't open " << TEX_DEFAULT_FILENAME << "\n";
+        return nullptr;
+    }
+
+    fprintf(output, TEX_FILE_BEG);
+
+    return output;
+}
+
+int FinishTeX(FILE* output) noexcept
+{
+    if(!output)
+    {
+        std::cout << "Output stream is already closed\n";
+        return -1;
+    }
+
+    fprintf(output, TEX_FILE_END);
+    fclose(output);
+
+    return 0;
+}
+
+int CallTeX()
+{
+    std::string command = CALL_TEX;
+    command += TEX_DEFAULT_FILENAME;
+
+    return system(command.c_str());
+}
+
+int OpenFile(const char* filename)
+{
+    if(!filename)
+    {
+        std::cout << "Unexpected nullptr as filename\n";
+        return -1;
+    }
+
+    std::string command = OPEN_FILE;
+    command += filename;
+
+    return system(command.c_str());
+}
+
 size_t Hash1(const Word& seed)  noexcept
 {
     return 1;

@@ -9,7 +9,33 @@
 #include "WordStruct.h"
 
 
+typedef size_t (*hash_func_t)(const Word&);
+
 const char PREPARED_DEFAULT_FILENAME[] = "prepared";
+const char TEX_DEFAULT_FILENAME[] = "HashCmp.tex";
+const char CALL_TEX[] = "pdflatex ";
+const char OPEN_FILE[] = "xdg-open ";
+
+const char TEX_FILE_BEG[] =
+"\\documentclass{article}\n"
+"\\usepackage{pgfplots}\n"
+"\\usepackage{geometry}\n"
+"\\geometry{left=2cm}\n"
+"\\geometry{right=1.5cm}\n"
+"\\geometry{top=2cm}\n"
+"\\geometry{bottom=2cm}\n\n"
+"\\begin{document}";
+
+const char TEX_FILE_END[] =
+"\\end{document}";
+
+const char DIAGRAM_BEG[] =
+"\\begin{tikzpicture}\\begin{axis}[	height = 15cm,	width  = 17cm,	every axis y label/.style={at = {(ticklabel cs: 0.5)}, "
+"rotate = 90, anchor = near ticklabel},	xlabel = {Hash value},	ylabel = {Elements in list},	ybar,	bar width = 2pt]"
+"\\addplot+[ybar] coordinates{\n";
+const char DIAGRAM_END[] =
+"};\\end{axis}\\end{tikzpicture}\\newpage\n";
+
 
 
 // Service          ================================================================
@@ -38,11 +64,31 @@ Word* Parse(char* file_content, size_t n_words) noexcept;
 
 const size_t MAX_HASH_TABLE_SIZE = 500;
 
+/// Initializes hashtable with words
 template<size_t max_hash_table_size>
 HashTable<Word, max_hash_table_size>&
 InitHashTable(  HashTable<Word, max_hash_table_size>& htable,
                 Word* words, size_t n_words,
-                size_t (*hash_function)(const Word& seed));
+                size_t (*hash_function)(const Word& seed))  noexcept;
+
+/// Opens TeX file and begins it
+FILE* PrepareTeX()  noexcept;
+
+/// Writes dots to the TeX file
+template<size_t max_hash_table_size>
+int LoadPoints(FILE* output, HashTable<Word, max_hash_table_size>& htable)    noexcept;
+
+/// Finishes TeX file and closes it
+int FinishTeX(FILE* output) noexcept;
+
+/// Calls TeX
+int CallTeX();
+
+/// Opens file
+/**
+    \param [in] filename    File to be opened
+*/
+int OpenFile(const char* filename);
 
 // Hash functions   ================================================================
 
