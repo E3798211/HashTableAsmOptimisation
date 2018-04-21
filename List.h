@@ -2,6 +2,7 @@
 #define LIST_H_INCLUDED
 
 #include <iostream>
+#include "WordStruct.h"
 
 template<typename data_T>
 class List
@@ -20,7 +21,7 @@ public:
     List()  noexcept:
         next_elem_  (nullptr)
     {
-        std::cout << "Default list constructor\n";
+//        std::cout << "Default list constructor\n";
     }
 
     /// Constructor with parameters
@@ -28,7 +29,7 @@ public:
         next_elem_  (next),
         data_       (new_data)
     {
-        std::cout << "List constructor with parameters\n";
+//        std::cout << "List constructor with parameters\n";
     }
 
     /// Copy constructor deleted
@@ -50,7 +51,7 @@ public:
     ~List()
     {
         delete next_elem_;
-        std::cout << "deleting list = " << this << "\n";
+//        std::cout << "deleting list = " << this << "\n";
     }
 
     // Service  ====================================================
@@ -100,7 +101,7 @@ public:
     {
         if(!new_elem)
         {
-            std::cout << "Unexpected nullptr!\n";
+//            std::cout << "Unexpected nullptr!\n";
             return nullptr;
         }
 
@@ -113,7 +114,7 @@ public:
     {
         if(!new_elem)
         {
-            std::cout << "Unexpected nullptr!\n";
+//            std::cout << "Unexpected nullptr!\n";
             return nullptr;
         }
 

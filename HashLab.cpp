@@ -213,13 +213,7 @@ size_t Hash5(const Word& seed)  noexcept
 
     const char* str = seed.word_.c_str();
     while(*str != '\0'){
-        if(hash % 2 == 0)
-            hash = hash >> 1;
-        else{
-            hash = hash >> 1;
-            hash += 2147483648; // 2^31
-        }
-
+        hash = (hash >> 1) | (((hash & 1) == 1) ? /*(1 << 31)*/2147483648 : 0);
         hash = hash ^ (*str++);
     }
     return hash;

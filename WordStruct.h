@@ -2,6 +2,7 @@
 #define WORDSTRUCT_H_INCLUDED
 
 #include <string>
+#include <cstring>
 
 struct Word
 {
@@ -18,7 +19,7 @@ struct Word
     Word(const char* word)  noexcept:
         word_   (word)
     {
-        std::cout << "Word constructor with parameters\n";
+//        std::cout << "Word constructor with parameters\n";
     }
 
     /// Compare operator
@@ -31,7 +32,7 @@ struct Word
     /// Destructor
     ~Word()
     {
-        std::cout << "Word dead\n";
+//        std::cout << "Word dead\n";
     }
 };
 

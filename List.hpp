@@ -9,14 +9,15 @@ List<data_T>* List<data_T>::Find(const data_T& to_be_found) noexcept
     {
         if(current->GetData() == to_be_found)
         {
-            std::cout << "Wanted element found!\n";
+//            std::cout << "Wanted element found!\n";
             return current;
         }
         current = current->GetNext();
     }
 
-    std::cout << "Wanted element not found!\n";
+//    std::cout << "Wanted element not found!\n";
     return nullptr;
 }
+
 
 #endif // LIST_HPP_INCLUDED

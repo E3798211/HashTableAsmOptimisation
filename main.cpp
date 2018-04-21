@@ -12,7 +12,7 @@ int main()
     HashTable<Word, MAX_HASH_TABLE_SIZE> htable;
 
     Word* words = nullptr;
-    hash_func_t hash_functions[6] = { Hash1, Hash2, Hash3, Hash4, Hash5, Hash6 };
+    hash_func_t hash_functions[] = { Hash1, Hash2, Hash3, Hash4, Hash5, Hash6 };
     FILE* output = PrepareTeX();
 
     for(auto func : hash_functions)
@@ -27,7 +27,7 @@ int main()
     }
 
     FinishTeX(output);
-    CallTeX();
+    //CallTeX();
     // OpenFile();
 
     delete [] line;

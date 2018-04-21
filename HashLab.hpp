@@ -9,12 +9,12 @@ InitHashTable(  HashTable<Word, max_hash_table_size>& htable,
 {
     if(!words)
     {
-        std::cout << "Unexpected nullptr as words\n";
+//        std::cout << "Unexpected nullptr as words\n";
         return htable;
     }
     if(!hash_function)
     {
-        std::cout << "Unexpected nullptr as hash_function\n";
+//        std::cout << "Unexpected nullptr as hash_function\n";
         return htable;
     }
 
@@ -51,13 +51,13 @@ int LoadPoints(FILE* output, HashTable<Word, max_hash_table_size>& htable)    no
 {
     if(!output)
     {
-        std::cout << "Unexpected nullptr as words\n";
+//        std::cout << "Unexpected nullptr as words\n";
         return -1;
     }
 
     fprintf(output, DIAGRAM_BEG);
     for(size_t i = 0; i < max_hash_table_size; i++)
-        fprintf(output, "(%u, %u)\n", i, htable[i]->GetLength());
+        fprintf(output, "(%lu, %lu)\n", i, htable[i]->GetLength());
     fprintf(output, DIAGRAM_END);
 
     return 0;

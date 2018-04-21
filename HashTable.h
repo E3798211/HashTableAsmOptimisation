@@ -19,7 +19,7 @@ public:
     /// Default constructor
     HashTable()     noexcept
     {
-        std::cout << "HashTable default constructor\n";
+//        std::cout << "HashTable default constructor\n";
     }
 
     /// Copy constructor deleted
@@ -28,7 +28,7 @@ public:
     /// Move constructor deleted
     HashTable(HashTable<data_T, max_hash_table_size>&& that)        = delete;
 
-    /// Assignment operator
+    /// Assignment noperator
     HashTable<data_T, max_hash_table_size>&
     operator=(const HashTable<data_T, max_hash_table_size>& that)   const   noexcept
     {
@@ -40,7 +40,7 @@ public:
     {
         if(index >= max_hash_table_size)
         {
-            std::cout << "Invalid index size: " << index << "\n";
+//            std::cout << "Invalid index size: " << index << "\n";
             // List<data_T>* tmp = &tmp_;                                              //  <-- Do I have to do it?
             return &tmp_;
         }
@@ -67,7 +67,7 @@ public:
     {
         if(index >= max_hash_table_size)
         {
-            std::cout << "Invalid index size: " << index << "\n";
+//            std::cout << "Invalid index size: " << index << "\n";
             return -1;
         }
 
